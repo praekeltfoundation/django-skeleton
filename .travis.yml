@@ -8,6 +8,6 @@ install:
 before_script:
   - psql -c 'create database skeleton;' -U postgres
 script:
-    - coverage run --source=. manage.py test
+    - coverage run --omit="*site-packages*" manage.py test
 after_success:
     - coveralls
