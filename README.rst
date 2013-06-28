@@ -4,6 +4,8 @@ django-skeleton
 A Sample Django application that illustrates what bits make up a
 sane Django based web app deployment.
 
+|travis|_ |coveralls|_
+
 ::
 
     $ virtualenv ve
@@ -137,3 +139,9 @@ supply you with a key for you to configure your raven client with.
 .. _Sentry: https://github.com/getsentry/sentry
 .. _Raven: https://github.com/getsentry/raven-python
 .. _Git: http://git-scm.com/
+
+.. |travis| image:: https://travis-ci.org/praekelt/django-skeleton.png?branch=develop
+.. _travis: https://travis-ci.org/praekelt/django-skeleton
+
+.. |coveralls| image:: https://coveralls.io/repos/praekelt/django-skeleton/badge.png?branch=develop
+.. _coveralls: https://coveralls.io/r/praekelt/django-skeleton
