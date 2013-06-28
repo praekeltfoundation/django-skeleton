@@ -6,7 +6,7 @@ install:
     - pip install coveralls --use-mirrors
     - pip install -r requirements.pip --use-mirrors
 before_script:
-  - psql -c 'create database skeleton_test;' -U postgres
+  - psql -c 'create database skeleton;' -U postgres
 script:
     - coverage run --source=txgsm manage.py test
 after_success:
