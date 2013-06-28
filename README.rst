@@ -4,7 +4,7 @@ django-skeleton
 A Sample Django application that illustrates what bits make up a
 sane Django based web app deployment.
 
-|travis|_ |coveralls|_
+|Travis|_ |Coveralls|_
 
 ::
 
@@ -42,6 +42,11 @@ like test coverage.
 
     OK
     Destroying test database for alias 'default'...
+
+We use Travis_ and Coveralls_ for our open-source projects for
+`Continuous Integration`_ and `Code Coverage`_. This project has a
+``.travis.yml`` file which Travis_ uses to automatically run the full
+test suite when new code is pushed to any of the repository's branches.
 
 
 South
@@ -165,9 +170,11 @@ supply you with a key for you to configure your raven client with.
 .. _Raven: https://github.com/getsentry/raven-python
 .. _Git: http://git-scm.com/
 .. _Nose: https://nose.readthedocs.org/en/latest/
+.. _Code Coverage: https://en.wikipedia.org/wiki/Code_coverage
+.. _Continue Integration: https://en.wikipedia.org/wiki/Continuous_Integration
 
-.. |travis| image:: https://travis-ci.org/praekelt/django-skeleton.png?branch=develop
-.. _travis: https://travis-ci.org/praekelt/django-skeleton
+.. |Travis| image:: https://travis-ci.org/praekelt/django-skeleton.png?branch=develop
+.. _Travis: https://travis-ci.org/praekelt/django-skeleton
 
-.. |coveralls| image:: https://coveralls.io/repos/praekelt/django-skeleton/badge.png?branch=develop
-.. _coveralls: https://coveralls.io/r/praekelt/django-skeleton
+.. |Coveralls| image:: https://coveralls.io/repos/praekelt/django-skeleton/badge.png?branch=develop
+.. _Coveralls: https://coveralls.io/r/praekelt/django-skeleton
