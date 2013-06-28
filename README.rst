@@ -164,6 +164,7 @@ supply you with a key for you to configure your raven client with.
 .. _Sentry: https://github.com/getsentry/sentry
 .. _Raven: https://github.com/getsentry/raven-python
 .. _Git: http://git-scm.com/
+.. _Nose: https://nose.readthedocs.org/en/latest/
 
 .. |travis| image:: https://travis-ci.org/praekelt/django-skeleton.png?branch=develop
 .. _travis: https://travis-ci.org/praekelt/django-skeleton
