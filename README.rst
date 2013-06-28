@@ -19,6 +19,31 @@ if you would like to use it as a starting point::
     $ git fetch skeleton
     $ git merge skeleton/develop
 
+Tests
+-----
+
+We use Nose_ for running our tests. It's not fantastic but it does the job
+well enough.
+
+By adding ``django_nose`` to the installed apps, Django's existing testing
+tools are replaced by Nose. Running tests is now the same with the difference
+being that Nose gives you better tools to analyze your code base for things
+like test coverage.
+
+::
+
+    (ve)$ ./manage.py test
+    nosetests --verbosity 1
+    Creating test database for alias 'default'...
+    Raven is not configured (logging is disabled). Please see the documentation for more information.
+    ..
+    ----------------------------------------------------------------------
+    Ran 2 tests in 0.002s
+
+    OK
+    Destroying test database for alias 'default'...
+
+
 South
 -----
 
