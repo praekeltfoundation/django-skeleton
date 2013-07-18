@@ -1,0 +1,32 @@
+# A configuration file for how this stuff is to be deployed with
+# Fabric.
+
+# which code to deploy, this'll allow is to do a git clone in
+# /var/praekelt which'll give us a `django-skeleton`
+# (or whatever repo name) folder there.
+repository: git://github.com/praekelt/django-skeleton.git
+
+# on which hosts this should happen
+hosts:
+    - user@qa-server-1.za.prk-host.net
+    - user@qa-server-2.za.prk-host.net
+
+# this will allow us to generate supervisord config files, not sure if
+# we want this in fab or in puppet.
+processes:
+    # allowed values are lists of commands or one line commands.
+    web:
+        - gunicorn --bind 0.0.0.0:8000 skeleton.wsgi
+        - gunicorn --bind 0.0.0.0:8001 skeleton.wsgi
+        - gunicorn --bind 0.0.0.0:8002 skeleton.wsgi
+        - gunicorn --bind 0.0.0.0:8003 skeleton.wsgi
+    celery: python manage.py celery worker --loglevel=info
+
+post_clone:
+    - pip install -r requirements.pip
+    - python manage.py syncdb --migrate --noinput
+    - python manage.py collectstatic --noinput
+
+post_pull:
+    - python manage.py syncdb --migrate --noinput
+    - python manage.py collectstatic --noinput
