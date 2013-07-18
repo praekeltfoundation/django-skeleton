@@ -8,8 +8,13 @@ repository: git://github.com/praekelt/django-skeleton.git
 
 # on which hosts this should happen
 hosts:
-    - user@qa-server-1.za.prk-host.net
-    - user@qa-server-2.za.prk-host.net
+    - qa-skeleton.za.prk-host.net
+
+# These environment variables will be available to stuff being
+# run by supervisord and by the handlers that run django management
+# commands.
+env:
+    DATABASE_URL: 'postgres://postgres@localhost:5432/skeleton'
 
 # this will allow us to generate supervisord config files, not sure if
 # we want this in fab or in puppet.
@@ -23,10 +28,13 @@ processes:
     celery: python manage.py celery worker --loglevel=info
 
 post_clone:
+    - 'if psql --user postgres --host localhost -l | grep -w skeleton; then true;
+       else createdb --user postgres --host localhost --port 5432 -E UNICODE -T template0 skeleton; fi'
     - pip install -r requirements.pip
     - python manage.py syncdb --migrate --noinput
     - python manage.py collectstatic --noinput
 
 post_pull:
+    - pip install -r requirements.pip
     - python manage.py syncdb --migrate --noinput
     - python manage.py collectstatic --noinput
