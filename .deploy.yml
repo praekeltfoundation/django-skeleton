@@ -4,11 +4,13 @@
 # which code to deploy, this'll allow is to do a git clone in
 # /var/praekelt which'll give us a `django-skeleton`
 # (or whatever repo name) folder there.
-repository: git://github.com/praekelt/django-skeleton.git
+repository:
+    url: git://github.com/praekelt/django-skeleton.git
+    branch: feature/issue-2-fabfile
 
 # on which hosts this should happen
 hosts:
-    - qa-skeleton.za.prk-host.net
+    - kraken.za.prk-host.net
 
 # These environment variables will be available to stuff being
 # run by supervisord and by the handlers that run django management

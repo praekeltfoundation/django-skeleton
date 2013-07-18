@@ -23,7 +23,8 @@ if not set(expected_keys).issubset(set(recipe.keys())):
 env.hosts = recipe['hosts']
 
 # which repository to clone
-repository_url = urlparse.urlparse(recipe['repository'])
+repository_url = urlparse.urlparse(recipe['repository']['url'])
+repository_branch = recipe['repository'].get('branch')
 repository_name = repository_url.path.split('/')[-1]
 folder_name = repository_name.rsplit('.', 1)[0]
 
@@ -46,6 +47,8 @@ def clone():
         sudo('git clone %s %s' % (repository_url.geturl(), env.path),
              user=DEPLOY_USER)
     with cd(env.path):
+        if repository_branch:
+            sudo('git checkout %s' % (repository_branch,), user=DEPLOY_USER)
         sudo('virtualenv ve', user=DEPLOY_USER)
         with prefix('. ve/bin/activate'):
             for command in post_clone:
@@ -55,6 +58,9 @@ def clone():
 
 def pull():
     with cd(env.path):
+        sudo('git pull', user=DEPLOY_USER)
+        if repository_branch:
+            sudo('git checkout %s' % (repository_branch,), user=DEPLOY_USER)
         with prefix('. ve/bin/activate'):
             for command in post_pull:
                 with shell_env(**environment):
