@@ -144,7 +144,6 @@ INSTALLED_APPS = (
     'raven.contrib.django.raven_compat',
     'djcelery',
     'djcelery_email',
-    'debug_toolbar',
 
     # sample apps to explain usage
     'app1',
@@ -196,12 +195,6 @@ CELERY_IMPORTS = ('celery_app.tasks',)
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-# Django debug toolbar
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-    'ENABLE_STACKTRACES': True,
-}
 
 # South configuration variables
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
