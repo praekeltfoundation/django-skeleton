@@ -22,15 +22,11 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'skeleton',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
+    'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL',
+                       'postgresql://postgres@localhost:5432/skeleton'))
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
