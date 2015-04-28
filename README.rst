@@ -4,6 +4,8 @@ django-skeleton
 A Sample Django application that illustrates what bits make up a
 sane Django based web app deployment.
 
+|Travis|_ |Coveralls|_
+
 ::
 
     $ virtualenv ve
@@ -16,6 +18,36 @@ if you would like to use it as a starting point::
     $ git remote add skeleton https://github.com/praekelt/django-skeleton.git
     $ git fetch skeleton
     $ git merge skeleton/develop
+
+Tests
+-----
+
+We use Nose_ for running our tests. It's not fantastic but it does the job
+well enough.
+
+By adding ``django_nose`` to the installed apps, Django's existing testing
+tools are replaced by Nose. Running tests is now the same with the difference
+being that Nose gives you better tools to analyze your code base for things
+like test coverage.
+
+::
+
+    (ve)$ ./manage.py test
+    nosetests --verbosity 1
+    Creating test database for alias 'default'...
+    Raven is not configured (logging is disabled). Please see the documentation for more information.
+    ..
+    ----------------------------------------------------------------------
+    Ran 2 tests in 0.002s
+
+    OK
+    Destroying test database for alias 'default'...
+
+We use Travis_ and Coveralls_ for our open-source projects for
+`Continuous Integration`_ and `Code Coverage`_. This project has a
+``.travis.yml`` file which Travis_ uses to automatically run the full
+test suite when new code is pushed to any of the repository's branches.
+
 
 South
 -----
@@ -137,3 +169,12 @@ supply you with a key for you to configure your raven client with.
 .. _Sentry: https://github.com/getsentry/sentry
 .. _Raven: https://github.com/getsentry/raven-python
 .. _Git: http://git-scm.com/
+.. _Nose: https://nose.readthedocs.org/en/latest/
+.. _Code Coverage: https://en.wikipedia.org/wiki/Code_coverage
+.. _Continue Integration: https://en.wikipedia.org/wiki/Continuous_Integration
+
+.. |Travis| image:: https://travis-ci.org/praekelt/django-skeleton.png?branch=develop
+.. _Travis: https://travis-ci.org/praekelt/django-skeleton
+
+.. |Coveralls| image:: https://coveralls.io/repos/praekelt/django-skeleton/badge.png?branch=develop
+.. _Coveralls: https://coveralls.io/r/praekelt/django-skeleton
